@@ -1,0 +1,65 @@
+format = """\
+[ 󰀵 ](bg:#7DF9AA fg:#1C3A5E)\
+[](fg:#7DF9AA bg:#1C3A5E)\
+$time\
+[](fg:#1C3A5E bg:#427ab4)\
+$directory\
+[](fg:#427ab4 bg:#f9e266)\
+$git_branch\
+$git_status\
+$git_metrics\
+[](fg:#f9e266 bg:#e1af69)\
+$python\
+[](fg:#e1af69)\
+$character\
+"""
+
+[directory]
+format = "[ $path ]($style)"
+style = "fg:#E4E4E4 bg:#427ab4"
+
+[git_branch]
+format = '[ $symbol$branch(:$remote_branch) ]($style)'
+symbol = "  "
+style = "fg:#1C3A5E bg:#f9e266"
+
+[git_status]
+format = '[$all_status]($style)'
+style = "fg:#1C3A5E bg:#f9e266"
+
+[git_metrics]
+format = "([+$added]($added_style))[]($added_style)"
+added_style = "fg:#1C3A5E bg:#f9e266"
+deleted_style = "fg:bright-red bg:235"
+disabled = false
+
+[hg_branch]
+format = "[ $symbol$branch ]($style)"
+symbol = " "
+
+[cmd_duration]
+format = "[  $duration ]($style)"
+style = "fg:bright-white bg:18"
+
+[python]
+symbol = ''
+pyenv_version_name = true
+format = "[ $symbol $virtualenv ]($style)"
+style = "fg:#1C3A5E bg:#e1af69"
+
+[nodejs]
+symbol = '󰎙'
+format = "[ $symbol ]($style)"
+style = "fg:#1C3A5E bg:#e1af69"
+
+
+[character]
+success_symbol = '[ ➜](bold green) '
+error_symbol = '[ ✗](#E84D44) '
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#1d2230"
+format = '[[ 󱑍 $time ](bg:#1C3A5E fg:#8DFBD2)]($style)'
+
