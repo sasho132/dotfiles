@@ -1,5 +1,5 @@
 format = """\
-[ 󰀵 ](bg:#7DF9AA fg:#1C3A5E)\
+$os\
 [](fg:#7DF9AA bg:#1C3A5E)\
 $time\
 [](fg:#1C3A5E bg:#427ab4)\
@@ -13,6 +13,31 @@ $python\
 [](fg:#e1af69)\
 $character\
 """
+
+[os]
+format = "[ $symbol ]($style)"
+style = "bg:#7DF9AA fg:#1C3A5E"
+disabled = false
+
+[os.symbols]
+Arch = "󰣇"
+CentOS = ""
+Debian = ""
+EndeavourOS = ""
+Fedora = ""
+Linux = ""
+Macos = "󰀵"
+Manjaro = ""
+Mint = "󰣭"
+Pop = ""
+Raspbian = ""
+Redhat = "󱄛"
+openSUSE = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
+
+
 
 [directory]
 format = "[ $path ]($style)"
