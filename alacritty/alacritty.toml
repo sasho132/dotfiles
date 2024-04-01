@@ -2,9 +2,12 @@ import =  [
 "~/.config/alacritty/themes/tokyo-night.toml"
 ]
 
+[env]
+term = "xterm-256color"
+
 [window]
 dimensions = { columns = 100, lines = 30}
-position = { x = 460, y = 230}
+position = { x = 220, y = 200}
 dynamic_padding = false
 # decorations = "Transparent" #(macOS only)
 opacity = 0.9
@@ -15,4 +18,9 @@ decorations_theme_variant = "Dark"
 [font]
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
 
-size = 18
+size = 20
+
+[colors]
+cursor = { text = "CellBackground", cursor = "#2efe98" }
+
+
