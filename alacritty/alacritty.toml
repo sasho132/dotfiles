@@ -6,6 +6,8 @@ import =  [
 term = "xterm-256color"
 
 [window]
+padding.x = 10
+padding.y = 10
 dimensions = { columns = 100, lines = 30}
 position = { x = 220, y = 200}
 dynamic_padding = false
