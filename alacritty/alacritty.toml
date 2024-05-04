@@ -10,7 +10,9 @@ dimensions = { columns = 100, lines = 30}
 position = { x = 220, y = 200}
 dynamic_padding = false
 # decorations = "Transparent" #(macOS only)
+decorations = "Buttonless"
 opacity = 0.9
+blur = true
 dynamic_title = true
 option_as_alt = "Both" #(macos only)
 decorations_theme_variant = "Dark"
