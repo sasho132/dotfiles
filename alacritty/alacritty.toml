@@ -9,19 +9,18 @@ term = "xterm-256color"
 padding.x = 10
 padding.y = 10
 dimensions = { columns = 100, lines = 30}
-position = { x = 220, y = 200}
+position = { x = 220, y = 150}
 dynamic_padding = false
 # decorations = "Transparent" #(macOS only)
 decorations = "Buttonless"
-opacity = 0.9
-blur = true
+opacity = 1
+blur = false
 dynamic_title = true
 option_as_alt = "Both" #(macos only)
 decorations_theme_variant = "Dark"
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
-
+normal = { family = "MesloLGS Nerd Font", style = "Regular" }
 size = 20
 
 [colors]
