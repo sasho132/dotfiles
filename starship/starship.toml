@@ -1,20 +1,16 @@
 format = """\
 $os\
-[](fg:#7df9aa bg:#1c3a5e)\
 $directory\
-[](fg:#1c3a5e bg:#f9e266)\
 $git_branch\
 $git_status\
 $git_metrics\
-[](fg:#f9e266 bg:#ff9d65)\
 $python$golang$nodejs\
-[](fg:#ff9d65)\
 $character\
 """
 
 [os]
-format = "[ $symbol ]($style)"
-style = "bg:#7df9aa fg:#1c3a5e"
+format = "[$symbol ]($style)"
+style = "fg:#2efe98"
 disabled = false
 
 [os.symbols]
@@ -38,21 +34,17 @@ Windows = ""
 
 
 [directory]
-format = "[ $path ]($style)"
-style = "fg:#8efbd2 bg:#1c3a5e"
+format = "[$path]($style)"
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
 symbol = "  "
-style = "fg:#1c3a5e bg:#f9e266"
 
 [git_status]
 format = '[$all_status]($style)'
-style = "fg:#1c3a5e bg:#f9e266"
 
 [git_metrics]
 format = "([+$added]($added_style))[]($added_style)"
-added_style = "fg:#1c3a5e bg:#f9e266"
 deleted_style = "fg:bright-red bg:235"
 disabled = false
 
@@ -68,17 +60,14 @@ style = "fg:bright-white bg:18"
 symbol = ''
 pyenv_version_name = true
 format = "[ $symbol $virtualenv ]($style)"
-style = "fg:#1c3a5e bg:#ff9d65"
 
 [nodejs]
 symbol = '󰎙'
 format = "[ $symbol ]($style)"
-style = "fg:#1c3a5e bg:#ff9d65"
 
 [golang]
 symbol = ''
 format = "[ $symbol $version ]($style)"
-style = "fg:#1c3a5e bg:#ff9d65"
 detect_extensions = ['go']
 
 [character]
