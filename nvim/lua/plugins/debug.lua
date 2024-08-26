@@ -74,6 +74,10 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- Change breakpoint icon and color
+    vim.api.nvim_set_hl(0, 'DapBreakpoint', { ctermbg = 0, fg = '#ffaf7f' })
+    vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DapBreakpoint' })
+
     -- require('nvim-dap-virtual-text').setup {
     --   enabled = true,
     --   enable_commands = true,
