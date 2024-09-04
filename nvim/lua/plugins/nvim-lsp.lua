@@ -179,7 +179,7 @@ return { -- LSP Configuration & Plugins
       tsserver = {},
       html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},
-      --tailwindcss = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
+      tailwindcss = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
       emmet_ls = {},
       dotls = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

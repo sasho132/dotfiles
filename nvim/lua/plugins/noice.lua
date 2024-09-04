@@ -73,6 +73,8 @@ return {
         enabled = false,
         view = 'notify',
       },
+
+      routes = { { view = 'cmdline', filter = { event = 'msg_showmode' } } },
     }
   end,
 }

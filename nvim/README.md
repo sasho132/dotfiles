@@ -1,5 +1,3 @@
-# My personal Neovim config thanks to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 
-
 ### External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
