@@ -176,7 +176,7 @@ return { -- LSP Configuration & Plugins
       gopls = {},
       pyright = {},
       -- rust_analyzer = {},
-      tsserver = {},
+
       html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},
       tailwindcss = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue' },
