@@ -64,3 +64,9 @@ vim.opt.scrolloff = 10
 
 -- Set linespacing
 vim.opt.linespace = 3
+
+-- Set tabstop
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true

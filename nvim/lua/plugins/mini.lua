@@ -16,6 +16,42 @@ return { -- Collection of various small independent plugins/modules
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
+    -- Mini-starter dashboard
+    --
+    local logo = table.concat({
+      ' ⠀⢀⣴⣦⠀⠀⠀⠀⢰⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀   ',
+      ' ⣰⣿⣿⣿⣷⡀⠀⠀⢸⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ',
+      ' ⣿⣿⣿⣿⣿⣿⣄⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  ',
+      ' ⣿⣿⣿⠈⢿⣿⣿⣦⢸⣿⣿⡇⠀⣠⠴⠒⠢⣄⠀⠀⣠⠴⠲⠦⣄⠐⣶⣆⠀⠀⢀⣶⡖⢰⣶⠀⢰⣶⣴⡶⣶⣆⣴⡶⣶⣶⡄  ',
+      ' ⣿⣿⣿⠀⠀⠻⣿⣿⣿⣿⣿⡇⢸⣁⣀⣀⣀⣘⡆⣼⠁⠀⠀⠀⠘⡇⠹⣿⡄⠀⣼⡿⠀⢸⣿⠀⢸⣿⠁⠀⢸⣿⡏⠀⠀⣿⣿  ',
+      ' ⠹⣿⣿⠀⠀⠀⠙⣿⣿⣿⡿⠃⢸⡀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⢀⡏⠀⢻⣿⣸⣿⠁⠀⢸⣿⠀⢸⣿⠀⠀⢸⣿⡇⠀⠀⣿⣿  ',
+      ' ⠀⠈⠻⠀⠀⠀⠀⠈⠿⠋⠀⠀⠈⠳⢤⣀⣠⠴⠀⠈⠧⣄⣀⡠⠞⠁⠀⠀⠿⠿⠃⠀⠀⢸⣿⠀⢸⣿⠀⠀⠸⣿⡇⠀⠀⣿⡿  ',
+    }, '\n')
+    local pad = string.rep(' ', 22)
+    local new_section = function(name, action, section)
+      return { name = name, action = action, section = pad .. section }
+    end
+
+    local starter = require 'mini.starter'
+    starter.setup {
+      header = logo,
+      items = {
+        -- starter.sections.recent_files(5, true),
+        new_section('󰁯 Recent files', 'Telescope oldfiles', 'Files'),
+        new_section(' Find File', 'Telescope find_files', 'Files'),
+        new_section(' File Browser', 'Oil --float ./', 'Files'),
+        new_section(' Lazy', 'Lazy', 'Config'),
+        new_section(' Mason', 'Mason', 'Config'),
+        new_section(' Quit', 'qa', 'Built-in'),
+      },
+      evaluate_single = true,
+      content_hooks = {
+        starter.gen_hook.adding_bullet(),
+        starter.gen_hook.aligning('center', 'center'),
+      },
+    }
+
+    -- Mini tabline
     require('mini.tabline').setup()
 
     -- Simple and easy statusline.
@@ -24,16 +60,5 @@ return { -- Collection of various small independent plugins/modules
     -- local statusline = require 'mini.statusline'
     -- set use_icons to true if you have a Nerd Font
     -- statusline.setup { use_icons = vim.g.have_nerd_font }
-
-    -- You can configure sections in the statusline by overriding their
-    -- default behavior. For example, here we set the section for
-    -- cursor location to LINE:COLUMN
-    -- ---@diagnostic disable-next-line: duplicate-set-field
-    -- statusline.section_location = function()
-    --   return '%2l:%-2v'
-    -- end
-
-    -- ... and there is more!
-    --  Check out: https://github.com/echasnovski/mini.nvim
   end,
 }

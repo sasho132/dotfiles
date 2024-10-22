@@ -28,6 +28,7 @@ return { -- Autoformat
       -- Conform can also run multiple formatters sequentially
       python = { 'isort', 'black' },
       javascript = { 'prettier' },
+      typescript = { 'prettier' },
       go = { 'goimports', 'gofmt' },
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
