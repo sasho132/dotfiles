@@ -36,8 +36,6 @@ Ubuntu = ""
 Unknown = ""
 Windows = ""
 
-
-
 [directory]
 format = "[$path]($style)"
 truncation_length = 3
