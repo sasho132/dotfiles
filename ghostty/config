@@ -1,0 +1,33 @@
+# Font Style
+font-family = "JetBrainsMono Nerd Font"
+font-size = 20
+
+# Cursor
+cursor-style = block
+cursor-invert-fg-bg
+shell-integration-features = no-cursor
+cursor-click-to-move
+
+# Background
+background-opacity = 0.9
+background-blur-radius = 20
+
+# Window Style
+window-height = 28
+window-width = 90
+window-padding-x = 10
+window-vsync
+resize-overlay-position = center
+
+# Clipboard and links handling
+link-url
+clipboard-read = allow
+clipboard-write = allow
+
+# Theme
+theme = catppuccin-mocha
+
+# MacOS specific
+macos-option-as-alt = true
+macos-auto-secure-input
+auto-update = check
