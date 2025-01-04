@@ -27,6 +27,7 @@ return {
         seggestions = 20,
       },
     },
+    dalay = 0,
   },
   keys = {
     {
