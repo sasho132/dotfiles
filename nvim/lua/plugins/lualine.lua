@@ -21,13 +21,9 @@ return {
     require('lualine').setup {
       options = {
         icons_enabled = vim.g.have_nerd_font,
-        theme = 'catppuccin',
-        component_separators = separators.arrow.component_separators,
-        section_separators = separators.arrow.section_separators,
-        -- component_separators = { left = '', right = '' },
-        -- section_separators = { left = '', right = '' },
-        -- component_separators = { left = '', right = '' },
-        -- section_separators = { left = '', right = '' },
+        theme = 'rose-pine',
+        component_separators = separators.blank.component_separators,
+        section_separators = separators.blank.section_separators,
         disabled_filetypes = {
           statusline = {},
           winbar = {},
