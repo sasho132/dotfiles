@@ -37,9 +37,10 @@ return { -- Collection of various small independent plugins/modules
       header = logo,
       items = {
         -- starter.sections.recent_files(5, true),
-        new_section('󰁯 Recent files', 'Telescope oldfiles', 'Files'),
-        new_section(' Find File', 'Telescope find_files', 'Files'),
+        new_section('󰁯 Recent files', 'FzfLua oldfiles', 'Files'),
+        new_section(' Find File', 'FzfLua files', 'Files'),
         new_section(' File Browser', 'Oil --float ./', 'Files'),
+        new_section(' Config files', 'Oil --float ~/.config/nvim/', 'Files'),
         new_section(' Lazy', 'Lazy', 'Config'),
         new_section(' Mason', 'Mason', 'Config'),
         new_section(' Quit', 'qa', 'Built-in'),
