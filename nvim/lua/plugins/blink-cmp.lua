@@ -1,7 +1,10 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = 'rafamadriz/friendly-snippets',
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    'Exafunction/windsurf.nvim',
+  },
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -23,26 +26,26 @@ return {
       menu = {
         border = 'rounded',
         draw = {
-          components = {
-            kind_icon = {
-              text = function(ctx)
-                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-                return kind_icon
-              end,
-              -- (optional) use highlights from mini.icons
-              highlight = function(ctx)
-                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                return hl
-              end,
-            },
-            kind = {
-              -- (optional) use highlights from mini.icons
-              highlight = function(ctx)
-                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-                return hl
-              end,
-            },
-          },
+          -- components = {
+          --   kind_icon = {
+          --     text = function(ctx)
+          --       local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+          --       return kind_icon
+          --     end,
+          --     -- (optional) use highlights from mini.icons
+          --     highlight = function(ctx)
+          --       local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+          --       return hl
+          --     end,
+          --   },
+          --   kind = {
+          --     -- (optional) use highlights from mini.icons
+          --     highlight = function(ctx)
+          --       local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+          --       return hl
+          --     end,
+          --   },
+          -- },
           columns = {
             { 'kind_icon', 'label', gap = 1 },
             { 'kind', 'label_description' },
@@ -51,6 +54,7 @@ return {
       },
       documentation = {
         auto_show = true,
+        auto_show_delay_ms = 500,
         window = {
           border = 'rounded',
         },
@@ -66,44 +70,62 @@ return {
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = 'mono',
 
-      -- kind_icons = {
-      --   Text = '󰉿',
-      --   Method = '󰊕',
-      --   Function = '󰊕',
-      --   Constructor = '󰒓',
-      --
-      --   Field = '󰜢',
-      --   Variable = '󰆦',
-      --   Property = '󰖷',
-      --
-      --   Class = '󱡠',
-      --   Interface = '󱡠',
-      --   Struct = '󱡠',
-      --   Module = '󰅩',
-      --
-      --   Unit = '󰪚',
-      --   Value = '󰦨',
-      --   Enum = '󰦨',
-      --   EnumMember = '󰦨',
-      --
-      --   Keyword = '󰻾',
-      --   Constant = '󰏿',
-      --
-      --   Snippet = '󱄽',
-      --   Color = '󰏘',
-      --   File = '󰈔',
-      --   Reference = '󰬲',
-      --   Folder = '󰉋',
-      --   Event = '',
-      --   Operator = '󰪚',
-      --   TypeParameter = '󰬛',
-      -- },
+      kind_icons = {
+        Text = '󰉿',
+        Method = '󰊕',
+        Function = '󰊕',
+        Constructor = '󰒓',
+
+        Field = '󰜢',
+        Variable = '󰆦',
+        Property = '󰖷',
+
+        Class = '󱡠',
+        Interface = '󱡠',
+        Struct = '󱡠',
+        Module = '󰅩',
+
+        Unit = '󰪚',
+        Value = '󰦨',
+        Enum = '󰦨',
+        EnumMember = '󰦨',
+
+        Keyword = '󰻾',
+        Constant = '󰏿',
+
+        Snippet = '󱄽',
+        Color = '󰏘',
+        File = '󰈔',
+        Reference = '󰬲',
+        Folder = '󰉋',
+        Event = '',
+        Operator = '󰪚',
+        TypeParameter = '󰬛',
+      },
     },
 
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
+      providers = {
+        codeium = {
+          name = 'Codeium',
+          module = 'codeium.blink',
+          async = true,
+          transform_items = function(_, items)
+            for _, item in ipairs(items) do
+              -- item.kind_icon = ''
+              item.kind_icon = '󱙺'
+              item.kind_name = 'Windsurf'
+            end
+            return items
+          end,
+        },
+      },
+      per_filetype = {
+        codecompanion = { 'codecompanion' },
+      },
     },
   },
   opts_extend = { 'sources.default' },

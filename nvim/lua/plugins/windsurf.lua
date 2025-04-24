@@ -7,7 +7,7 @@ return {
     require('codeium').setup {
       enable_cmp_source = false,
       virtual_text = {
-        enabled = true,
+        enabled = false,
         idle_delay = 75,
         filetypes = {
           markdown = false,

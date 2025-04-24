@@ -23,17 +23,20 @@ return {
         },
 
         hover = {
-          enabled = false,
+          enabled = true,
           silent = false, -- set to true to not show a message if hover is not available
           view = nil, -- when nil, use defaults from documentation
           ---@type NoiceViewOptions
           opts = {
-            border = 'rounded',
+            border = {
+              style = 'rounded',
+              padding = { 1, 2 },
+            },
           }, -- merged with defaults from documentation
         },
 
         signature = {
-          enabled = false,
+          enabled = true,
           auto_open = {
             enabled = true,
             trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
@@ -42,7 +45,11 @@ return {
           },
           view = nil, -- when nil, use defaults from documentation
           ---@type NoiceViewOptions
-          opts = { border = 'rounded' }, -- merged with defaults from documentation
+          opts = {
+            border = {
+              style = 'rounded',
+            },
+          }, -- merged with defaults from documentation
         },
 
         -- defaults for hover and signature help

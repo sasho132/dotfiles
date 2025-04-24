@@ -35,8 +35,8 @@ return { -- Collection of various small independent plugins/modules
     local starter = require 'mini.starter'
     starter.setup {
       header = logo,
+      footer = nil,
       items = {
-        -- starter.sections.recent_files(5, true),
         new_section('󰁯 Recent files', 'FzfLua oldfiles', 'Files'),
         new_section(' Find File', 'FzfLua files', 'Files'),
         new_section(' File Browser', 'Oil --float ./', 'Files'),
