@@ -7,9 +7,8 @@ return {
       exclude_buftypes = { 'terminal', 'text', 'lazy', 'mason' },
       ---@usage 'background'|'foreground'|'virtual'
       render = 'virtual',
-      -- virtual_symbol = '■',
+      virtual_symbol = '■',
       -- virtual_symbol = '',
-      virtual_symbol = '󱓻',
 
       enable_var_usage = true,
       enable_named_colors = true,

@@ -40,7 +40,6 @@ return { -- Collection of various small independent plugins/modules
         new_section('󰁯 Recent files', 'FzfLua oldfiles', 'Files'),
         new_section(' Find File', 'FzfLua files', 'Files'),
         new_section(' File Browser', 'Oil --float ./', 'Files'),
-        new_section(' Config files', 'Oil --float ~/.config/nvim/', 'Files'),
         new_section(' Lazy', 'Lazy', 'Config'),
         new_section(' Mason', 'Mason', 'Config'),
         new_section(' Quit', 'qa', 'Built-in'),

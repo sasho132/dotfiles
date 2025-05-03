@@ -21,7 +21,7 @@ return {
     require('lualine').setup {
       options = {
         icons_enabled = vim.g.have_nerd_font,
-        theme = 'rose-pine',
+        theme = 'catppuccin',
         component_separators = separators.blank.component_separators,
         section_separators = separators.blank.section_separators,
         disabled_filetypes = {

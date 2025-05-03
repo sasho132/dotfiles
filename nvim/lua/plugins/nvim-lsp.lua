@@ -213,7 +213,7 @@ return { -- LSP Configuration & Plugins
     --  You can press `g?` for help in this menu.
     require('mason').setup {
       ui = {
-        border = 'rounded',
+        border = 'single',
         width = 0.8,
         height = 0.8,
       },

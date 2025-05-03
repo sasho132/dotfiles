@@ -16,7 +16,7 @@ return {
           adapter = 'openai',
         },
         inline = {
-          adapter = 'deepseek',
+          adapter = 'openai',
         },
       },
 
