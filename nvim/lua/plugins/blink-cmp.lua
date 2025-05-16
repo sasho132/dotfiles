@@ -24,7 +24,7 @@ return {
 
     completion = {
       menu = {
-        border = 'single',
+        border = 'rounded',
         draw = {
           -- components = {
           --   kind_icon = {
@@ -56,7 +56,7 @@ return {
         auto_show = true,
         auto_show_delay_ms = 500,
         window = {
-          border = 'single',
+          border = 'rounded',
         },
       },
     },

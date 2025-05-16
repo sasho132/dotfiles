@@ -52,7 +52,7 @@ return { -- Collection of various small independent plugins/modules
     }
 
     -- Mini tabline
-    require('mini.tabline').setup()
+    -- require('mini.tabline').setup()
 
     -- Simple and easy statusline.
     --  You could remove this setup call if you don't like it,

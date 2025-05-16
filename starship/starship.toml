@@ -16,7 +16,7 @@ symbol = " "
 [os]
 format = "[$symbol ]($style)"
 style = "fg:#2efe98"
-disabled = false
+disabled = true
 
 [os.symbols]
 Arch = "󰣇"
@@ -44,7 +44,7 @@ truncate_to_repo = false
 
 [git_branch]
 format = '[ $symbol$branch(:$remote_branch) ]($style)'
-symbol = "  "
+symbol = " "
 
 [git_status]
 format = '[$all_status]($style)'
