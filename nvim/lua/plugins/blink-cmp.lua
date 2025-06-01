@@ -24,7 +24,6 @@ return {
 
     completion = {
       menu = {
-        border = 'rounded',
         draw = {
           -- components = {
           --   kind_icon = {
@@ -55,9 +54,7 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,
-        window = {
-          border = 'rounded',
-        },
+        treesitter_highlighting = false,
       },
     },
 

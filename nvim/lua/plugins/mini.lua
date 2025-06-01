@@ -53,12 +53,5 @@ return { -- Collection of various small independent plugins/modules
 
     -- Mini tabline
     -- require('mini.tabline').setup()
-
-    -- Simple and easy statusline.
-    --  You could remove this setup call if you don't like it,
-    --  and try some other statusline plugin
-    -- local statusline = require 'mini.statusline'
-    -- set use_icons to true if you have a Nerd Font
-    -- statusline.setup { use_icons = vim.g.have_nerd_font }
   end,
 }
