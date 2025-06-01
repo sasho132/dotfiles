@@ -1,14 +1,22 @@
 local M = {}
 
+vim.api.nvim_set_hl(0, 'StatusLineNormal', { fg = '#1e1e2e', bg = '#a6e3a1', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineInsert', { fg = '#1e1e2e', bg = '#89b4fa', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineVisual', { fg = '#1e1e2e', bg = '#b4befe', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineReplace', { fg = '#1e1e2e', bg = '#f38ba8', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineCommand', { fg = '#1e1e2e', bg = '#f9e2af', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineTerminal', { fg = '#1e1e2e', bg = '#89dceb', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineOther', { fg = '#1e1e2e', bg = '#a6adc8', bold = true })
+
 local modes = {
-  n = { 'NORMAL' },
-  i = { 'INSERT' },
-  v = { 'VISUAL' },
-  V = { 'V-LINE' },
-  [''] = { 'V-BLOCK' },
-  R = { 'REPLACE' },
-  c = { 'COMMAND' },
-  t = { 'TERM' },
+  n = { 'NORMAL', 'StatusLineNormal' },
+  i = { 'INSERT', 'StatusLineInsert' },
+  v = { 'VISUAL', 'StatusLineVisual' },
+  V = { 'V-LINE', 'StatusLineVisual' },
+  [''] = { 'V-BLOCK', 'StatusLineVisual' },
+  R = { 'REPLACE', 'StatusLineReplace' },
+  c = { 'COMMAND', 'StatusLineCommand' },
+  t = { 'TERM', 'StatusLineTerminal' },
 }
 
 local function mode_section()
@@ -17,22 +25,70 @@ local function mode_section()
   return string.format('%%#%s# %s %%#StatusLine#', entry[2], entry[1])
 end
 
-local function file_ext()
-  local filename = vim.api.nvim_buf_get_name(0) -- get current buffer name (move inside function for fresh data)
-  if filename == '' then
-    return ' [No Name]' -- icon for noname
-  end
+local function file_icon()
+  local filename = vim.api.nvim_buf_get_name(0)
   local ext = vim.fn.fnamemodify(filename, ':e')
   local icon = require('mini.icons').get('extension', ext) or ''
-  local filetype = vim.bo.filetype
-  if not filetype or filetype == '' then
-    filetype = '[No Type]'
-  end
-  return string.format('%s %s', icon, filetype)
+  return string.format('%s', icon)
+end
+
+local function file_ext()
+  local filetype = vim.bo.filetype or ''
+  filetype = filetype ~= '' and filetype or '[No Type]'
+  return string.format('%s', filetype)
 end
 
 local function file_position()
-  return string.format('%3d:%-2d ', vim.fn.line '.', vim.fn.col '.')
+  return string.format('%3d:%-2d', vim.fn.line '.', vim.fn.col '.')
+end
+
+local function file_percentage()
+  local current_line = vim.fn.line '.'
+  local total_lines = vim.fn.line '$'
+
+  -- total_lines will always be at least 1, as vim.fn.line('$') returns 1 for an empty buffer.
+  local percentage = (current_line / total_lines) * 100
+  local icon
+  if percentage <= 12.5 then
+    icon = '󰪞'
+  elseif percentage <= 25 then
+    icon = '󰪟'
+  elseif percentage <= 37.5 then
+    icon = '󰪠'
+  elseif percentage <= 50 then
+    icon = '󰪡'
+  elseif percentage <= 62.5 then
+    icon = '󰪢'
+  elseif percentage <= 72.5 then
+    icon = '󰪣'
+  elseif percentage <= 87.5 then
+    icon = '󰪤'
+  else
+    icon = '󰪥'
+  end
+
+  --return string.format('%s %.0f%%', icon, percentage)
+  return string.format('%s ', icon)
+end
+
+local function search_count()
+  if vim.v.hlsearch == 0 then
+    return ''
+  end
+
+  local ok, count = pcall(vim.fn.searchcount, { recompute = true, maxcount = 500 })
+  if (not ok or (count.current == nil)) or (count.total == 0) then
+    return ''
+  end
+
+  if count.incomplete == 1 then
+    return '?/?'
+  end
+
+  local too_many = ('>%d'):format(count.maxcount)
+  local total = ((count.total > count.maxcount) and too_many) or count.total
+
+  return '  ' .. (' %s/%s '):format(count.current, total)
 end
 
 local function lsp()
@@ -90,16 +146,21 @@ function _G.custom_statusline()
   return table.concat {
     mode_section(),
     ' ',
-    ' %<%f', -- File path, shortened if space is low
+    ' %<%f', -- File path, shortened if space is low
     '%=',
     git_status(),
     ' ',
-    '%=',
+    search_count(),
+    ' ',
     lsp(),
+    ' ',
+    file_icon(),
     ' ',
     file_ext(),
     ' ',
     file_position(),
+    ' ',
+    file_percentage(),
   }
 end
 

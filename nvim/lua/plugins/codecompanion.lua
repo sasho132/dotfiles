@@ -18,6 +18,9 @@ return {
         inline = {
           adapter = 'openai',
         },
+        cmd = {
+          adapter = 'deepseek',
+        },
       },
 
       adapters = {
@@ -51,7 +54,7 @@ return {
           return require('codecompanion.adapters').extend('gemini', {
             schema = {
               model = {
-                gemini = 'gemini-2.0-flash',
+                gemini = 'gemini-2.5-flash-preview-05-20',
               },
             },
             env = {

@@ -107,7 +107,7 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium', 'codecompanion' },
       providers = {
         codeium = {
           name = 'Codeium',
@@ -115,7 +115,6 @@ return {
           async = true,
           transform_items = function(_, items)
             for _, item in ipairs(items) do
-              -- item.kind_icon = ''
               item.kind_icon = '󱙺'
               item.kind_name = 'Windsurf'
             end
