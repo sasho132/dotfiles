@@ -3,7 +3,8 @@ return {
   -- optional: provides snippets for the snippet source
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'Exafunction/windsurf.nvim',
+    -- 'saghen/blink.compat',
+    -- 'supermaven-inc/supermaven-nvim',
   },
 
   -- use a release tag to download pre-built binaries
@@ -104,24 +105,21 @@ return {
     -- Default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium', 'codecompanion' },
-      providers = {
-        codeium = {
-          name = 'Codeium',
-          module = 'codeium.blink',
-          async = true,
-          transform_items = function(_, items)
-            for _, item in ipairs(items) do
-              item.kind_icon = '󱙺'
-              item.kind_name = 'Windsurf'
-            end
-            return items
-          end,
-        },
-      },
-      per_filetype = {
-        codecompanion = { 'codecompanion' },
-      },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'codecompanion' },
+      -- providers = {
+      --   supermaven = {
+      --     name = 'Supermaven',
+      --     module = 'blink.compat.source',
+      --     score_offset = 3,
+      --     transform_items = function(_, items)
+      --       for _, item in ipairs(items) do
+      --         item.kind_icon = '󱙺'
+      --         item.kind_name = 'Supermaven'
+      --       end
+      --       return items
+      --     end,
+      --   },
+      -- },
     },
   },
   opts_extend = { 'sources.default' },
