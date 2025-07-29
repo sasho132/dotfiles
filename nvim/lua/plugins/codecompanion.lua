@@ -16,10 +16,10 @@ return {
           adapter = 'openai',
         },
         inline = {
-          adapter = 'openai',
+          adapter = 'anthropic',
         },
         cmd = {
-          adapter = 'deepseek',
+          adapter = 'openai',
         },
       },
 
@@ -59,6 +59,19 @@ return {
             },
             env = {
               api_key = 'cmd:cat -s ~/Documents/gemini-api-key',
+            },
+          })
+        end,
+
+        anthropic = function()
+          return require('codecompanion.adapters').extend('anthropic', {
+            schema = {
+              model = {
+                anthropic = 'claude-sonnet-4-20250514',
+              },
+            },
+            env = {
+              api_key = 'cmd:cat -s ~/Documents/anthropic-api-key',
             },
           })
         end,

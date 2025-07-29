@@ -58,7 +58,6 @@ return {
         'delve',
         'debugpy',
         'js-debug-adapter',
-        'chrome-debug-adapter',
       },
     }
 

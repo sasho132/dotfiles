@@ -1,56 +1,30 @@
 format = """\
-$os\
 $directory\
 $git_branch\
 $git_status\
 $git_metrics\
-$fill\
 $python$golang$nodejs\
-$line_break\
 $character\
 """
 
 [fill]
 symbol = " "
 
-[os]
-format = "[$symbol ]($style)"
-style = "fg:#2efe98"
-disabled = true
-
-[os.symbols]
-Arch = "󰣇"
-CentOS = ""
-Debian = ""
-EndeavourOS = ""
-Fedora = ""
-Linux = ""
-Macos = "󰀵"
-Manjaro = ""
-Mint = "󰣭"
-Pop = ""
-Raspbian = ""
-Redhat = "󱄛"
-openSUSE = ""
-Ubuntu = "󰕈"
-Unknown = ""
-Windows = ""
-
 [directory]
-format = "[$path]($style)"
+format = "[$path ]($style)"
 truncation_length = 3
 truncation_symbol = '…/'
 truncate_to_repo = false
 
 [git_branch]
-format = '[ $symbol$branch(:$remote_branch) ]($style)'
+format = '[$symbol$branch(:$remote_branch) ]($style)'
 symbol = " "
 
 [git_status]
 format = '[$all_status]($style)'
 
 [git_metrics]
-format = "([+$added]($added_style))[]($added_style)"
+format = "([+$added ]($added_style))[]($added_style)"
 deleted_style = "fg:bright-red bg:235"
 disabled = false
 
@@ -65,7 +39,6 @@ style = "fg:bright-white bg:18"
 [python]
 symbol = ''
 pyenv_version_name = true
-# format = "[ $symbol $virtualenv ]($style)"
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_prefix = ""
 
@@ -80,5 +53,5 @@ detect_extensions = ['go']
 
 [character]
 success_symbol = '[➜](bold green)'
-error_symbol = '[✗](#e84d44)'
+error_symbol = '[✗](bold red)'
 
