@@ -74,6 +74,9 @@ vim.o.linespace = 3
 -- Set windboarder
 vim.o.winborder = 'rounded'
 
+-- Set cmdheight
+vim.o.cmdheight = 0
+
 -- Set tabstop
 vim.o.tabstop = 4
 vim.o.softtabstop = 4

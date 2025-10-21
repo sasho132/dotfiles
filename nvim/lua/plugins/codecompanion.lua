@@ -13,10 +13,10 @@ return {
 
       strategies = {
         chat = {
-          adapter = 'openai',
+          adapter = 'anthropic',
         },
         inline = {
-          adapter = 'anthropic',
+          adapter = 'openai',
         },
         cmd = {
           adapter = 'openai',
@@ -24,57 +24,59 @@ return {
       },
 
       adapters = {
-        openai = function()
-          return require('codecompanion.adapters').extend('openai', {
-            schema = {
-              model = {
-                default = 'gpt-4.1-mini',
+        http = {
+          openai = function()
+            return require('codecompanion.adapters').extend('openai', {
+              schema = {
+                model = {
+                  default = 'gpt-4.1',
+                },
               },
-            },
-            env = {
-              api_key = 'cmd:cat -s ~/Documents/openai-api-key',
-            },
-          })
-        end,
+              env = {
+                api_key = 'cmd:cat -s ~/Documents/openai-api-key',
+              },
+            })
+          end,
 
-        deepseek = function()
-          return require('codecompanion.adapters').extend('deepseek', {
-            schema = {
-              model = {
-                deepseek = 'deepseek-coder',
+          deepseek = function()
+            return require('codecompanion.adapters').extend('deepseek', {
+              schema = {
+                model = {
+                  deepseek = 'deepseek-coder',
+                },
               },
-            },
-            env = {
-              api_key = 'cmd:cat -s ~/Documents/deepseek-api-key',
-            },
-          })
-        end,
+              env = {
+                api_key = 'cmd:cat -s ~/Documents/deepseek-api-key',
+              },
+            })
+          end,
 
-        gemini = function()
-          return require('codecompanion.adapters').extend('gemini', {
-            schema = {
-              model = {
-                gemini = 'gemini-2.5-flash-preview-05-20',
+          gemini = function()
+            return require('codecompanion.adapters').extend('gemini', {
+              schema = {
+                model = {
+                  gemini = 'gemini-2.5-flash',
+                },
               },
-            },
-            env = {
-              api_key = 'cmd:cat -s ~/Documents/gemini-api-key',
-            },
-          })
-        end,
+              env = {
+                api_key = 'cmd:cat -s ~/Documents/gemini-api-key',
+              },
+            })
+          end,
 
-        anthropic = function()
-          return require('codecompanion.adapters').extend('anthropic', {
-            schema = {
-              model = {
-                anthropic = 'claude-sonnet-4-20250514',
+          anthropic = function()
+            return require('codecompanion.adapters').extend('anthropic', {
+              schema = {
+                model = {
+                  anthropic = 'claude-sonnet-4-20250514',
+                },
               },
-            },
-            env = {
-              api_key = 'cmd:cat -s ~/Documents/anthropic-api-key',
-            },
-          })
-        end,
+              env = {
+                api_key = 'cmd:cat -s ~/Documents/anthropic-api-key',
+              },
+            })
+          end,
+        },
       },
     }
   end,
