@@ -1,25 +1,18 @@
 return {
-  { -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
-    main = 'ibl',
-    opts = {
-      exclude = {
-        filetypes = {
-          'help',
-          'alpha',
-          'dashboard',
-          'neo-tree',
-          'Trouble',
-          'trouble',
-          'lazy',
-          'mason',
-          'notify',
-          'toggleterm',
-          'lazyterm',
-        },
-      },
+  'saghen/blink.indent',
+  --- @module 'blink.indent'
+  --- @type blink.indent.Config
+  opts = {
+    static = {
+      enabled = true,
+      char = '│',
+      -- char = '┆ ',
+    },
+    scope = {
+      enabled = true,
+      char = '│',
+      -- char = '┆ ',
+      highlights = { 'BlinkIndentScope' },
     },
   },
 }
