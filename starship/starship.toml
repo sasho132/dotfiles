@@ -21,7 +21,7 @@ format = '[$symbol$branch(:$remote_branch) ]($style)'
 symbol = " "
 
 [git_status]
-format = '[$all_status]($style)'
+format = '[$all_status ]($style)'
 
 [git_metrics]
 format = "([+$added ]($added_style))[]($added_style)"
@@ -39,12 +39,12 @@ style = "fg:bright-white bg:18"
 [python]
 symbol = ''
 pyenv_version_name = true
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+format = '[${symbol} ${pyenv_prefix}(${version})(\($virtualenv\)) ]($style)'
 pyenv_prefix = ""
 
 [nodejs]
 symbol = '󰎙'
-format = "[ $symbol ]($style)"
+format = "[$symbol ]($style)"
 
 [golang]
 symbol = ''
