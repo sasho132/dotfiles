@@ -102,21 +102,6 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      -- providers = {
-      --   supermaven = {
-      --     name = 'Supermaven',
-      --     module = 'blink.compat.source',
-      --     score_offset = 100,
-      --     async = true,
-      --     transform_items = function(_, items)
-      --       for _, item in ipairs(items) do
-      --         item.kind_icon = '󱙺'
-      --         item.kind_name = 'Supermaven'
-      --       end
-      --       return items
-      --     end,
-      --   },
-      -- },
     },
   },
   opts_extend = { 'sources.default' },

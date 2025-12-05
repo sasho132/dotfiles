@@ -1,35 +1,57 @@
 local M = {}
 
-vim.api.nvim_set_hl(0, 'StatusLineNormal', { fg = '#1e1e2e', bg = '#a6e3a1', bold = true })
-vim.api.nvim_set_hl(0, 'StatusLineInsert', { fg = '#1e1e2e', bg = '#89b4fa', bold = true })
-vim.api.nvim_set_hl(0, 'StatusLineVisual', { fg = '#1e1e2e', bg = '#b4befe', bold = true })
-vim.api.nvim_set_hl(0, 'StatusLineReplace', { fg = '#1e1e2e', bg = '#f38ba8', bold = true })
-vim.api.nvim_set_hl(0, 'StatusLineCommand', { fg = '#1e1e2e', bg = '#f9e2af', bold = true })
-vim.api.nvim_set_hl(0, 'StatusLineTerminal', { fg = '#1e1e2e', bg = '#89dceb', bold = true })
-vim.api.nvim_set_hl(0, 'StatusLineOther', { fg = '#1e1e2e', bg = '#a6adc8', bold = true })
-
-local modes = {
-  n = { 'NORMAL', 'StatusLineNormal' },
-  i = { 'INSERT', 'StatusLineInsert' },
-  v = { 'VISUAL', 'StatusLineVisual' },
-  V = { 'V-LINE', 'StatusLineVisual' },
-  [''] = { 'V-BLOCK', 'StatusLineVisual' },
-  R = { 'REPLACE', 'StatusLineReplace' },
-  c = { 'COMMAND', 'StatusLineCommand' },
-  t = { 'TERM', 'StatusLineTerminal' },
+local config = {
+  show_block = true,
+  show_lsp = true,
+  show_git = true,
+  show_search = true,
+  show_icon = true,
 }
 
+vim.api.nvim_set_hl(0, 'StatusLineNormal', { link = 'NormalMode' })
+vim.api.nvim_set_hl(0, 'StatusLineInsert', { link = 'InsertMode' })
+vim.api.nvim_set_hl(0, 'StatusLineVisual', { link = 'VisualMode' })
+vim.api.nvim_set_hl(0, 'StatusLineReplace', { link = 'ReplaceMode' })
+vim.api.nvim_set_hl(0, 'StatusLineCommand', { link = 'CmdLineMode' })
+vim.api.nvim_set_hl(0, 'StatusLineTerminal', { link = 'TerminalMode' })
+vim.api.nvim_set_hl(0, 'StatusLineOther', { link = 'StatusLineMode' })
+
 local function mode_section()
+  local modes = {
+    n = { 'NORMAL', 'StatusLineNormal' },
+    i = { 'INSERT', 'StatusLineInsert' },
+    v = { 'VISUAL', 'StatusLineVisual' },
+    V = { 'V-LINE', 'StatusLineVisual' },
+    [''] = { 'V-BLOCK', 'StatusLineVisual' },
+    R = { 'REPLACE', 'StatusLineReplace' },
+    c = { 'COMMAND', 'StatusLineCommand' },
+    t = { 'TERM', 'StatusLineTerminal' },
+  }
+
   local m = vim.api.nvim_get_mode().mode
   local entry = modes[m] or { m, 'StatusLineOther' }
-  return string.format('%%#%s# %s %%#StatusLine#', entry[2], entry[1])
+
+  if config.show_block then
+    return string.format('%%#%s# %%#StatusLine# %s %%#StatusLine#', entry[2], entry[1])
+  else
+    return string.format('%%#%s# %s %%#StatusLine#', entry[2], entry[1])
+  end
 end
 
 local function file_icon()
+  local icon_cache = {}
+  local ok, mini_icons = pcall(require, 'mini.icons')
+  if not ok then
+    return ''
+  end
   local filename = vim.api.nvim_buf_get_name(0)
   local ext = vim.fn.fnamemodify(filename, ':e')
-  local icon = require('mini.icons').get('extension', ext) or ''
-  return string.format('%s', icon)
+  if icon_cache[ext] then
+    return icon_cache[ext]
+  end
+  local icon = mini_icons.get('extension', ext) or ''
+  icon_cache[ext] = string.format('%s', icon)
+  return icon_cache[ext]
 end
 
 local function file_ext()
@@ -45,8 +67,6 @@ end
 local function file_percentage()
   local current_line = vim.fn.line '.'
   local total_lines = vim.fn.line '$'
-
-  -- total_lines will always be at least 1, as vim.fn.line('$') returns 1 for an empty buffer.
   local percentage = (current_line / total_lines) * 100
   local icon
   if percentage <= 12.5 then
@@ -92,6 +112,9 @@ local function search_count()
 end
 
 local function lsp()
+  if not vim.diagnostic then
+    return ''
+  end
   local count = { errors = 0, warnings = 0, info = 0, hints = 0 }
   for _, diag in ipairs(vim.diagnostic.get(0)) do
     local sev = diag.severity
@@ -107,10 +130,10 @@ local function lsp()
   end
 
   local symbols = {
-    errors = { icon = '', hl = 'LspDiagnosticsSignError' },
-    warnings = { icon = '', hl = 'LspDiagnosticsSignWarning' },
-    hints = { icon = '', hl = 'LspDiagnosticsSignHint' },
-    info = { icon = '', hl = 'LspDiagnosticsSignInformation' },
+    errors = { icon = '', hl = 'DiagnosticSignError' },
+    warnings = { icon = '', hl = 'DiagnosticSignWarning' },
+    hints = { icon = '', hl = 'DiagnosticSignHint' },
+    info = { icon = '', hl = 'DiagnosticSignInformation' },
   }
 
   local result = {}
@@ -124,6 +147,9 @@ local function lsp()
 end
 
 local function git_status()
+  if not vim.g.gitsigns_head then
+    return ''
+  end
   local gsd = vim.b.gitsigns_status_dict
   if not gsd or not gsd.head then
     return ''
@@ -148,13 +174,13 @@ function _G.custom_statusline()
     ' ',
     ' %<%f', -- File path, shortened if space is low
     '%=',
-    git_status(),
+    config.show_git and git_status() or '',
     ' ',
-    search_count(),
+    config.show_search and search_count() or '',
     ' ',
-    lsp(),
+    config.show_lsp and lsp() or '',
     ' ',
-    file_icon(),
+    config.show_icon and file_icon() or '',
     ' ',
     file_ext(),
     ' ',

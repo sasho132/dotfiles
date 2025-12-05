@@ -50,8 +50,10 @@ return { -- Collection of various small independent plugins/modules
         starter.gen_hook.aligning('center', 'center'),
       },
     }
-
     -- Mini tabline
     -- require('mini.tabline').setup()
+
+    -- Mini comment
+    require('mini.comment').setup()
   end,
 }

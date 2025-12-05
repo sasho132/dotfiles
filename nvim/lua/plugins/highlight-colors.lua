@@ -6,7 +6,7 @@ return {
       exclude_filetypes = { 'lazy', 'oil', 'mason' },
       exclude_buftypes = { 'terminal', 'text', 'lazy', 'mason' },
       ---@usage 'background'|'foreground'|'virtual'
-      render = 'virtual',
+      render = 'background',
       virtual_symbol = '■',
       -- virtual_symbol = '',
 

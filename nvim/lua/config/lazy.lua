@@ -26,6 +26,7 @@ require('lazy').setup {
     -- import your plugins
     { import = 'plugins' },
   },
-  install = { colorscheme = { 'catppuccin' } },
+  install = { colorscheme = { 'rose-pine' } },
   checker = { enabled = true },
+  ui = { border = 'rounded' },
 }

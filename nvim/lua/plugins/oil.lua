@@ -12,7 +12,7 @@ return {
       },
 
       -- Open parent directory in current window
-      vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' }),
+      vim.keymap.set('n', '<leader>oe', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' }),
 
       -- is_hidden_file = function(name, bufnr)
       --   return vim.startswith(name, '.')
