@@ -1,4 +1,5 @@
 format = """\
+$os\
 $directory\
 $git_branch\
 $git_status\
@@ -9,6 +10,18 @@ $character\
 
 [fill]
 symbol = " "
+
+[os]
+format = "[$symbol ]($style)"
+style = "fg:#93e2d5"
+disabled = false
+
+[os.symbols]
+Macos = ""
+Arch = "󰣇"
+Debian = ""
+Linux = ""
+Windows = ""
 
 [directory]
 format = "[$path ]($style)"
