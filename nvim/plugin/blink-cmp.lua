@@ -1,9 +1,14 @@
 vim.pack.add {
+  'https://github.com/saghen/blink.lib',
   'https://github.com/saghen/blink.cmp',
   'https://github.com/rafamadriz/friendly-snippets',
 }
 
-require('blink.cmp').setup {
+local cmp = require 'blink.cmp'
+
+cmp.build():wait(60000)
+
+cmp.setup {
   -- Avoid the Rust fuzzy matcher binary requirement when using vim.pack.add.
   fuzzy = {
     implementation = 'lua',
