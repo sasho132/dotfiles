@@ -6,7 +6,17 @@ vim.pack.add {
 
 local cmp = require 'blink.cmp'
 
-cmp.build():wait(60000)
+-- Only build on install/update, and only when a Rust toolchain is available.
+-- The Rust fuzzy matcher is optional: we use the Lua implementation below.
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(ev)
+    if ev.data.spec.name ~= 'blink.cmp' then return end
+    if ev.data.kind ~= 'install' and ev.data.kind ~= 'update' then return end
+    if vim.fn.executable 'cargo' ~= 1 then return end
+    if not ev.data.active then vim.cmd.packadd 'blink.cmp' end
+    require('blink.cmp').build():wait(60000)
+  end,
+})
 
 cmp.setup {
   -- Avoid the Rust fuzzy matcher binary requirement when using vim.pack.add.
